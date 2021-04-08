@@ -23,9 +23,6 @@ mov ds, ax ; ds <- ax
 mov es, ax ; es <- ax
 ENDM M_Init ; Кінець макросу
 
-
-
-
 ;--------------------III.ПОЧАТОК СЕГМЕНТУ ДАНИХ
 DATASEG
 ;Оголошеня двовимірного масиву 16х16
@@ -58,11 +55,11 @@ CODESEG
 Start:
 M_Init
     mov cx, 256
-        copy_loop:
+        wwww:
             mov bx, [ds:si]             ; get number from array_array stack & set it to bx as a temp variable
             push bx      ; set value from bx to ds with offset 
             add si, 2                    ; si value + 2
-            loop copy_loop
+            loop wwww
 			
     PROC copy_arr       
         xor si, si                       ; set si to zero
