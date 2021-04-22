@@ -284,7 +284,7 @@ NextJ:
         ja      ForJ
         add     si,     2              
         loop    ForI
- mov ax, [DS:0000h]
+ mov ax, [DS:01FEh]
  call output       
 		pop     di
         pop     si
