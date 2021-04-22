@@ -1,11 +1,3 @@
-;Програма під час початку роботи виводить повідомлення.
-;В залежності від обраного повідомлення вона :
-;1. Викликає функцію для видачі звуку.
-;2. Викликає функцію для обчислення результату виразу 
-;3. Забезпечує вихід з програми
-; Під час реалізації функцій 
-; Програма читає зі стандартного вводу (клавіатури) строку.
-; Розроблено на кафедрі АУТС 3.10.2011 року.
 ;--------------------------------------------------------------- 
  IDEAL
  MODEL small 
@@ -43,8 +35,8 @@ display_message_3 DB "b - for exit", 13, 10, '$'
 display_message_3_3 DB "d - for max ", 13, 10, '$' 
 display_message_4 DB "----------programm for lab is END !!! --------------", 13, 10, '$'
 display_message_5 DB "Press any key for beep --------------", 13, 10, '$'
-display_message_6 DB "Result:", 13, 10, '$'
-display_message_7 DB "max value:", 13, 10, '$'
+display_message_6 DB "Result:                               ", 13, 10, '$'
+display_message_7 DB "max value:                             ", 13, 10, '$'
 	;--- Змінні що використовувалися під час налаштування програми 
 message DB ?
 	test_message_1 DB "!!! count DISPLAY", 13, 10, '$' 
@@ -177,7 +169,7 @@ lab2:
  OUT CHANNEL_2,AL ;відправка старшого байту 
  
  ;--- пауза 2 секунды
- mov cx, 80
+ mov cx, 80 ;(40 - 1 сек)
 classic_loop:
 mov bx, cx
   mov  ah,86h
@@ -197,12 +189,14 @@ mov bx, cx
  PROC math
   mov ax, -2
  mov bx, 3
- sub ax, bx
+ sub ax, bx ; -5
+ 
   mov bx, 1
- add ax,bx
+ add ax,bx ; -4
+ 
  mov bl, 2
- mov dx, 1h
  idiv bl ;AL (приватне), Ah (залишок)
+ 
  mov dx,ax
  mov cl,3h
  imul cl
@@ -218,6 +212,7 @@ mov bx, cx
  
 PROC output
         ;ax - число
+		mov [ES:0235h],' '
 		mov [ES:0234h],' '
 		mov [ES:0233h],' '
 		mov [ES:0232h],' '
@@ -241,7 +236,6 @@ m2:   POP AX
     pop bx      ;восстанавливаем регистры
     POP dx
     POP cx 
-mov [ES:022Dh],'$'
 mov [ES:0235h],'$'
     mov dx, 230h ;Пересилання адреси рядка символів message в регістр dx
   	mov ah,09h;Завантаження числа 09h до регістру ah
@@ -290,7 +284,7 @@ NextJ:
         ja      ForJ
         add     si,     2              
         loop    ForI
- mov ax, [DS:01FEh]
+ mov ax, [DS:0000h]
  call output       
 		pop     di
         pop     si
