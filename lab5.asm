@@ -59,12 +59,6 @@ mov es, ax ; es <- ax
 			mov [ds:si], 3330h 
 			add si, 10  		
 			loop copy_loop		
-	mov [ss:1EB8h], 0320h
-	mov [ss:1EB6h], 1027h
-	mov [ss:1EB4h], 0220h
-	mov [ss:1EB2h], 1112h
-	mov [ss:1EB0h], 0420h
-	mov [ss:1EAEh], 1114h
 	
 lea si, Array
 mov cx, Len

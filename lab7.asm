@@ -43,6 +43,8 @@ display_message_3 DB "b - for exit", 13, 10, '$'
 display_message_3_3 DB "d - for max ", 13, 10, '$' 
 display_message_4 DB "----------programm for lab is END !!! --------------", 13, 10, '$'
 display_message_5 DB "Press any key for beep --------------", 13, 10, '$'
+display_message_6 DB "Result:", 13, 10, '$'
+display_message_7 DB "max value:", 13, 10, '$'
 	;--- Змінні що використовувалися під час налаштування програми 
 message DB ?
 	test_message_1 DB "!!! count DISPLAY", 13, 10, '$' 
@@ -91,13 +93,13 @@ je Count ; На лекції 3!!!
 cmp ax, 056h ; V ascii =56h
 je Beep
 cmp ax, 064h ; d ascii =64h
-je sort
+je max
 cmp ax, 062h ; b ascii =62h
 je Exit
 jmp Main_cikle
 ;---------------------------------------------------------
 Count:
- mov dx, offset display_message_5 ; Закоментовані повідомлення у ході налаштування
+ mov dx, offset display_message_6 ; Закоментовані повідомлення у ході налаштування
   call display_foo
  call math
 jmp Main_cikle
@@ -110,11 +112,11 @@ Beep:
  jmp Main_cikle
  
  ;---------------------------------------------------------
-sort:
+max:
  ; any foo for sound ; виклик функції звуку
- mov dx, offset display_message_5 
+ mov dx, offset display_message_7 
  call display_foo
- call BubbleSort 
+ call Bubblesort 
  jmp Main_cikle
 ;---------------------------------------------------------
 ; Стандартний вихід з програми
@@ -258,7 +260,7 @@ mov bx, cx
 ret 
 ENDP output
 
-PROC BubbleSort 
+PROC Bubblesort 
 lea si, Array
 mov cx, Len    
         push    bx
@@ -296,6 +298,6 @@ NextJ:
         pop     cx
         pop     bx
         ret
-ENDP BubbleSort  
+ENDP Bubblesort  
 
 END Start
