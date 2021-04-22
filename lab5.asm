@@ -67,6 +67,8 @@ call BubbleSort
 			mov ax, 01h
 			mov ax, 01h
 			mov ax, 01h
+ mov ah,04Ch ; 
+ int 21h ; 
 endp main
 
 BubbleSort      proc       
