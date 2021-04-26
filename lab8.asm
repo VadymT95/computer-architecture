@@ -31,6 +31,7 @@ BOTROW EQU 15 ;Нижній рядок меню
 LEFCOL EQU 26 ;Лівий стовпчик меню
 ATTRIB DB ? ; Атрибути екрану
 ROW DB 00 ;Рядок екрану
+
 SHADOW DB 19 DUP(0DBH);
 MENU DB 0C9H, 17 DUP(0CDH), 0BBH
  DB 0BAH, ' print info      ',0BAH
@@ -55,8 +56,10 @@ team db "team 8:",10,13,'$'
 stepanenko db "Stepanenko Anatolii",10,13,'$';Рядок символів для виводу на екран
 salymonenko db "Salymonenko Vadym",10,13,'$';Рядок символів для виводу на екран
 durdynets db "Durdynets Aleksandr",10,13,'$';Рядок символів для виводу на екран
+
 ;/////////////////////////////////////////////////////////////
  .CODE
+ 
 A10MAIN PROC FAR
  MOV AX,@data 
  MOV DS,AX 
