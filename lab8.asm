@@ -44,11 +44,6 @@ PROMPT DB 'To select an item, use <Up/Down Arrow>'
  DB ' and press <Enter>.'
  DB 13, 10, 'Press <Esc> to exit.'
 .386 ;-------------------------------------------------------------------
-display_message_0 DB "------------programm for lab 3 is running !!!--------", 13, 10, '$'
-display_message_1 DB "c - for count", 13, 10, '$'
-display_message_2 DB "V - for beep", 13, 10, '$'
-display_message_3 DB "b - for exit", 13, 10, '$' 
-display_message_3_3 DB "d - for max ", 13, 10, '$' 
 display_message_4 DB "----------programm for lab is END !!! --------------", 13, 10, '$'
 display_message_5 DB "*****SOUND*****", 13, 10, '$'
 display_message_6 DB "Result:                               ", 13, 10, '$'   
@@ -406,8 +401,8 @@ Q10CLEAR PROC NEAR
 Q10CLEAR ENDP
 
  print proc far
-	mov dx, offset team
 	mov ah,09h;Завантаження числа 09h до регістру ah
+	mov dx, offset team
 	int 21h
 	mov dx, offset stepanenko;Пересилання адреси рядка символів message в регістр dx
 	int 21h;Переривання	
